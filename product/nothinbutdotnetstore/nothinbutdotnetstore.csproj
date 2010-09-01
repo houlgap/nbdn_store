@@ -66,6 +66,7 @@
     <Compile Include="tasks\CatalogBrowsingTasks.cs" />
     <Compile Include="tasks\stubs\StubCatalogBrowsingTasks.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartments.cs" />
+    <Compile Include="web\core\DefaultCommand.cs" />
     <Compile Include="web\core\DefaultViewFor.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -91,7 +92,7 @@
     <Compile Include="web\core\ViewFor.cs">
     </Compile>
     <Compile Include="web\core\ViewBroker.cs" />
-    <Compile Include="web\ViewProducts.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewProducts.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
