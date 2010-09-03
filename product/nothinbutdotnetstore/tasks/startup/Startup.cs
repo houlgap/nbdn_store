@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Reflection;
 using System.Web;
 using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.infrastructure.containers;
@@ -25,10 +26,9 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         static IDictionary<Type, DependencyResolver> resolvers = new Dictionary<Type, DependencyResolver>();
 
-        public static void run()
+        public static void run(StartupServices startup_services)
         {
-            StartupServices ss = new DefaultStartupServices();
-            StartupCommandFactory command_factory = new DefaultStartupCommandFactory(ss);
+            StartupCommandFactory command_factory = new DefaultStartupCommandFactory(startup_services);
 
             Start.by<ConfigureCoreServices>(command_factory)
                 .followed_by<ConfigureInfrastructure>()

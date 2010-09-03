@@ -8,5 +8,6 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         void register_dependency_factory<Contract>(Func<object> resolver);
         DependencyResolver get_resolver_for(Type dependency);
+        IEnumerable<Type> get_types_from_views_assembly();
     }
 }

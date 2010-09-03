@@ -4,7 +4,8 @@
 
         private void Application_Start(object sender, EventArgs e)
         {
-            Startup.run();
+            StartupServices startup_services = new DefaultStartupServices(GetType().Assembly);
+            Startup.run(startup_services);
         }
 
 
