@@ -79,8 +79,11 @@ namespace nothinbutdotnetstore.specs.tasks
                 factory.Stub(command_factory => command_factory.create_command_of(typeof(AnotherFakeStartupCommand))).
                     Return(second_command);
 
-                create_sut_using(() => new DefaultStartupBuilder(startup_command,factory));
-            };
+                     command_factory = the_dependency<StartupCommandFactory>();
+                     provide_a_basic_sut_constructor_argument(existing_types);
+
+                     command_factory.Stub(cf => cf.create_command_of(typeof (FakeStartupCommand))).Return(the_command);
+                 };
 
             Because b = () =>
                 sut.finish_by<AnotherFakeStartupCommand>();
@@ -98,6 +101,10 @@ namespace nothinbutdotnetstore.specs.tasks
 
         public class FakeStartupCommand : StartupCommand
         {
+            public FakeStartupCommand(StartupServices startup_services)
+            {
+            }
+
             public void run()
             {
             }
