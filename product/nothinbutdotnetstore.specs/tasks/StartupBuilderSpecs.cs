@@ -2,6 +2,7 @@
  using System.Collections.Generic;
  using Machine.Specifications;
  using Machine.Specifications.DevelopWithPassion.Rhino;
+ using nothinbutdotnetstore.infrastructure;
  using nothinbutdotnetstore.tasks.startup;
  using Machine.Specifications.DevelopWithPassion.Extensions;
  using Rhino.Mocks;
@@ -68,12 +69,11 @@ namespace nothinbutdotnetstore.specs.tasks
              Establish c = () =>
                  {
                      the_command = an<StartupCommand>();
-                     existing_types = new Type[0];
 
                      command_factory = the_dependency<StartupCommandFactory>();
-                     provide_a_basic_sut_constructor_argument(existing_types);
+                     provide_a_basic_sut_constructor_argument(new NulloCommand());
 
-                     command_factory.Stub(cf => cf.create_command_of(typeof (FakeStartupCommand))).Return(the_command);
+                     command_factory.Stub(cf => cf.create_command_of(typeof(FakeStartupCommand))).Return(the_command);
                  };
 
 
@@ -91,6 +91,10 @@ namespace nothinbutdotnetstore.specs.tasks
 
         class FakeStartupCommand : StartupCommand
         {
+            public FakeStartupCommand(StartupServices startup_services)
+            {
+            }
+
             public void run()
             {
                 
